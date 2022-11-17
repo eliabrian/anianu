@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    font-family: 'Asap', sans-serif;
+    background-color: black;
+    color: whitesmoke
+}
+
+header .link {
+    color: #7f7f7f;
+    cursor: pointer;
+}
+
+.active {
+    color: whitesmoke;
+    cursor: pointer;
+}
+
+.cover {
+    border: 2px solid #fff;
+    box-shadow: 0 0 5rem #000;
+}
+
+.desc {
+    left: calc(10vw + 15rem);
+    position: relative;
+    width: 50vw;
+
+}
