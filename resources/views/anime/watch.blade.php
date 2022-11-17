@@ -14,7 +14,7 @@
         </div>
         <div class="lg:w-1/4 lg:ml-6 rounded-lg ">
             <p class="text-2xl font-semibold mb-2 p-4">Episode List</p>
-            <div class="overflow-auto h-30 text-justify">
+            <div class="overflow-auto xl:h-43 lg:h-30 h-30 text-justify">
                 @foreach ($episodeDetails['anime']['episodes'] as $episode)
                 <div class="flex items-center">
                     @if ($episode['image'])    

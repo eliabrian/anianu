@@ -1,7 +1,7 @@
 <div class="card lg:mb-4">
     <div class="card-image h-fit">
         <a href="{{ route('anime.show', ['slug' => $anime['slug']]) }}">
-            <img src="{{ $anime['coverImage'] }}" alt="{{ $anime['title']['userPreferred'] }}" class="rounded-md w-full lg:h-80 h-96 object-cover">
+            <img src="{{ $anime['coverImage'] }}" alt="{{ $anime['title']['userPreferred'] }}" class="rounded-md w-full  xl:h-96 lg:h-80 md:h-96 h-64 object-cover">
         </a>
     </div>
     <div class="card-desc mt-1">

@@ -31,7 +31,7 @@
             <div class="card lg:mb-4">
                 <div class="card-image h-fit">
                     <a href="{{ route('anime.show', $anime['anime']['slug']) }}">
-                        <img src="{{ $anime['anime']['coverImage'] }}" alt="{{ $anime['anime']['title']['userPreferred'] }}" class="w-full h-64 object-cover rounded-lg">
+                        <img src="{{ $anime['anime']['coverImage'] }}" alt="{{ $anime['anime']['title']['userPreferred'] }}" class="w-full xl:h-96 object-cover rounded-lg">
                     </a>
                 </div>
                 <div class="card-desc mt-1">
@@ -50,11 +50,11 @@
     <div class="anime-characters lg:mx-56 mx-4">
         {{-- {{dd($characters)}} --}}
         <p class="text-3xl font-bold mb-4">Characters</p>
-        <div class="grid gap-4 lg:grid-cols-5 grid-cols-2 overflow-x-scroll h-30">
+        <div class="grid gap-4 lg:grid-cols-5 md:grid-cols-3 grid-cols-2 overflow-x-scroll h-30">
             @foreach ($characters['data'] as $character)
             <div class="card lg:mb-4">
                 <div class="card-image h-fit">
-                    <img src="{{ $character['character']['images']['webp']['image_url'] }}" alt="asdasd" class="w-full lg:h-64 object-cover rounded-lg">
+                    <img src="{{ $character['character']['images']['webp']['image_url'] }}" alt="asdasd" class="w-full xl:h-96 object-cover rounded-lg">
                 </div>
                 <div class="card-desc mt-1">
                     <div class="title truncate font-bold">
