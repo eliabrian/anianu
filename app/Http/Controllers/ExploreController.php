@@ -11,7 +11,7 @@ class ExploreController extends Controller
     public function index()
     {
         $latest = EnimeHandler::getAnimeRecent();
-        $popular = EnimeHandler::getPopularAnime();
+        $popular = EnimeHandler::getPopularAnime(1, 10);
         
         return view('explore', compact('latest', 'popular'));
     }

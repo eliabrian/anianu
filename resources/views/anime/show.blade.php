@@ -5,7 +5,7 @@
 @section('content')
 <div class="anime-show mt-2">
     <div class="lg:96 h-96 w-full bg-no-repeat bg-cover bg-top" style="background-image: url({{$anime['bannerImage']}})">
-        <div class="h-full bg-gradient-to-b from-transparent via-black to-black lg:from-transparent lg:to-black"></div>
+        <div class="h-full bg-gradient-to-b from-transparent via-black/50 to-black lg:from-transparent lg:to-black"></div>
     </div>
     
     <div class="lg:px-56 flex flex-col lg:flex-row container items-center lg:items-start mx-auto lg:mt-4">
@@ -18,7 +18,7 @@
                 <a class="block lg:inline bg-white p-2 rounded-full lg:mr-1 mb-4 lg:mb-0 text-sm text-black" href="{{ route('anime.watch', ['slug' => $anime['slug'], 'episode' => $anime['episodes'][0]['id']]) }}">Watch Now</a>
                 {{ $anime['status'] }} &#9679; {{ count($anime['episodes']) }} Episode(s)
             </p>
-            <p>{!! $anime['description'] !!}</p>
+            <p class="line-clamp-5" id="anime-desc">{!! $anime['description'] !!}</p> <button id="show-more-desc" class="underline underline-offset-4">Show more</button>
         </div>
     </div>
 
@@ -50,7 +50,7 @@
     <div class="anime-characters lg:mx-56 mx-4">
         {{-- {{dd($characters)}} --}}
         <p class="text-3xl font-bold mb-4">Characters</p>
-        <div class="grid gap-4 lg:grid-cols-5 md:grid-cols-3 grid-cols-2 overflow-x-scroll h-30">
+        <div class="grid gap-4 lg:grid-cols-4 md:grid-cols-3 grid-cols-2 overflow-x-scroll h-30">
             @foreach ($characters['data'] as $character)
             <div class="card lg:mb-4">
                 <div class="card-image h-fit">
