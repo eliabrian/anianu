@@ -9,6 +9,7 @@ use Throwable;
 class EnimeHandler
 {
     private const RECENT_PATH = 'recent';
+    private const POPULAR_PATH = 'popular';
     private const INFO_PATH = 'anime';
     private const EPISODE_PATH = 'episode';
     private const SOURCE_PATH = 'source';
@@ -26,6 +27,26 @@ class EnimeHandler
     {
         try {
             $url = config('anime.protocol') . "://" . config('anime.urls.enime') . "/" . self::RECENT_PATH;
+
+            $response = Http::get($url, [
+                'page' => $page,
+                'perPage' => $perPage
+            ]);
+
+            return $response->json();
+
+        } catch (Throwable $th) {
+
+            Log::error($th);
+
+            return abort(500);
+        }
+    }
+
+    public static function getPopularAnime(int $page = 1, int $perPage = 20)
+    {
+        try {
+            $url = config('anime.protocol') . "://" . config('anime.urls.enime') . "/" . self::POPULAR_PATH;
 
             $response = Http::get($url, [
                 'page' => $page,
