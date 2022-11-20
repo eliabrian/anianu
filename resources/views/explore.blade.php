@@ -6,11 +6,11 @@
 {{-- {{dd($popular)}} --}}
 <div class="explore px-10 my-6">
    <div class="popular-anime mb-6">
-        <div id="controls-carousel" class="relative" data-carousel="static">
+        <div id="controls-carousel" class="relative" data-carousel="carousel">
             <!-- Carousel wrapper -->
             <div class="relative h-80 lg:h-30 overflow-hidden rounded-lg md:h-30">
                 @foreach ($popular['data'] as $anime)
-                <div id="carousel-item-{{$loop->index}}" class="hidden duration-700 ease-in-out" data-carousel-item="@if($loop->first) active @endif" data-carousel="slide">
+                <div id="carousel-item-{{$loop->index}}" class="hidden duration-700 ease-in-out" data-carousel-item="@if($loop->first) active @endif">
                     <span class="absolute text-lg lg:text-4xl font-semibold text-white -translate-x-1/2 -translate-y-1/2 top-1/2 lg:left-56 left-40 z-50 w-72">
                         {{ $anime['title']['userPreferred'] }}
                         <p class="text-sm lg:text-md lg:line-clamp-3 line-clamp-2 font-light lg:mt-4 lg:w-96">{!!$anime['description'] !!}</p>

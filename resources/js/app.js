@@ -1,6 +1,6 @@
 import './bootstrap';
+import './carousel';
 import 'flowbite';
-
 
 let searchButton = document.getElementById('search-button');
 let searchInput = document.getElementById('search-input');
@@ -25,3 +25,6 @@ showMoreButton.addEventListener('click', () => {
         showMoreButton.innerHTML = 'Show more'
     }
 })
+
+const carousel = new Carousel(items, options);
+
