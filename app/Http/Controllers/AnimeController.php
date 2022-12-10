@@ -10,35 +10,45 @@ use App\Handlers\JikanHandler;
 
 class AnimeController extends Controller
 {
-    public function show(string $slug)
+    public function show(string $id)
     {
-        $anime = EnimeHandler::getAnimeInfo($slug);
+        $jikan = JikanHandler::getAnimeById($id)['data'];
+        $anime = EnimeHandler::getAnimeMapping($id);
 
-        if (empty($anime['bannerImage'])) {
+        if (isset($anime['statusCode']) && $anime['statusCode'] === 404) {
+            return abort(404);
+        }
+        
+        if (!isset($anime['bannerImage']) && empty($anime['bannerImage'])) {
             $anime['bannerImage'] = $anime['coverImage'];
         }
 
-        $characters = JikanHandler::getAnimeCharacterById($anime['mappings']['mal']);
-
-        return view('anime.show', compact('anime', 'characters'));
+        return view('anime.show', compact('jikan', 'anime'));
     }
 
-    public function watch(string $anime, string $episode)
+    public function watch(string $id, string $episode)
     {
         $episodeDetails = EnimeHandler::getEpisodeInfo($episode);
         
-        $source = AnikatsuHandler::getEpisode($episodeDetails['sources'][0]['target']);
-        $source['ep_download'] = str_replace("Gogoanime", "AniKatsu", $source['ep_download']);
-        $source['stream_link'] = "https://anikatsu.me/player/v1.php?id=" . $episodeDetails['sources'][0]['target'] . "&download=" . $source['ep_download'];
-        $source['ep_num'] = (int)$source['ep_num'];
+        $source['stream_link'] = "https://anikatsu.me/player/v1.php?id=" . $episodeDetails['sources'][0]['target'];
         
         return view('anime.watch', compact('episodeDetails', 'source'));
     }
 
     public function search(Request $request)
     {
-        $results = EnimeHandler::getAnimeBySearch($request->query('q'));
+        $q = $request->query('q');
+        $results = EnimeHandler::getAnimeBySearch($q)['data'];
+        $animes = [];
+
+        foreach ($results as $key => $anime) {
+            $animes[$key]['images']['jpg']['large_image_url'] = $anime['coverImage'];
+            $animes[$key]['title'] = $anime['title']['userPreferred'];
+            $animes[$key]['score'] = $anime['averageScore'] / 10;
+            $animes[$key]['mal_id'] = $anime['mappings']['mal'];
+
+        }
         
-        return view('anime.search', compact('results'));
+        return view('anime.search', compact('animes', 'q'));
     }
 }

@@ -5,6 +5,7 @@ return [
     'urls' => [
         'anikatsu' => 'anikatsu.vercel.app',
         'enime' => 'api.enime.moe',
-        'consumet' => 'api.consumet.org'
+        'consumet' => 'api.consumet.org',
+        'jikan' => 'api.jikan.moe/v4',
     ],
 ];

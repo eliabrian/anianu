@@ -4,15 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Handlers\AnikatsuHandler;
 use App\Handlers\EnimeHandler;
+use App\Handlers\JikanHandler;
 use Illuminate\Http\Request;
 
 class ExploreController extends Controller
 {
     public function index()
     {
-        $latest = EnimeHandler::getAnimeRecent();
-        $popular = EnimeHandler::getPopularAnime(1, 10);
-        
-        return view('explore', compact('latest', 'popular'));
+        // $latest = EnimeHandler::getAnimeRecent();
+        $now = JikanHandler::getSeason(true)["data"];
+        $now = array_slice($now, 0, 5);
+
+        $top = JikanHandler::getTopAnime(limit: 5)['data'];
+
+
+        return view('explore', compact('now', 'top'));
     }
 }
