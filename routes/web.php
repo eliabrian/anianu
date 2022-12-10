@@ -16,6 +16,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [ExploreController::class, 'index'])->name('explore.index');
-Route::get('anime/{slug}', [AnimeController::class, 'show'])->name('anime.show');
-Route::get('watch/{slug}/{episode}', [AnimeController::class, 'watch'])->name('anime.watch');
+Route::get('anime/{id}', [AnimeController::class, 'show'])->name('anime.show');
+Route::get('watch/{id}/{episode}', [AnimeController::class, 'watch'])->name('anime.watch');
 Route::get('search', [AnimeController::class, 'search'])->name('anime.search');

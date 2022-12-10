@@ -5,9 +5,9 @@
 @section('content')
 <div class="explore px-10 my-6">
     <h2 class="text-2xl font-semibold mb-6">Search Results</h2>
-    <div class="grid gap-4 lg:grid-cols-6 grid-cols-2">
-        @foreach ($results['data'] as $anime)
-            <x-search-card :anime="$anime"></x-card>
+    <div class="card-list-body grid gap-5 lg:grid-cols-5 md:grid-cols-3 grid-cols-2">
+        @foreach ($animes as $anime)
+        <x-card :anime="$anime"></x-card>
         @endforeach
     </div>
 </div>

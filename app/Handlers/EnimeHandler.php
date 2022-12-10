@@ -14,6 +14,7 @@ class EnimeHandler
     private const EPISODE_PATH = 'episode';
     private const SOURCE_PATH = 'source';
     private const SEARCH_PATH = 'search';
+    private const MAPPING_PATH = 'mapping';
 
     /**
      * Get recent Animes
@@ -115,6 +116,14 @@ class EnimeHandler
         $response = Http::get($url);
 
         return $response->json();
+    }
 
+    public static function getAnimeMapping(string $id, string $provider = 'mal')
+    {
+        $url = config('anime.protocol') . "://" . config('anime.urls.enime') . "/" . self::MAPPING_PATH . '/' . $provider . '/' . $id;
+
+        $response = Http::get($url);
+
+        return $response->json();
     }
 }

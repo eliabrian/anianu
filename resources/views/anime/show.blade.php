@@ -1,6 +1,6 @@
 @extends('layouts.base')
 
-@section('title', $anime['title']['userPreferred'])
+@section('title', $jikan['title'])
 
 @section('content')
 <div class="anime-show mt-2">
@@ -10,22 +10,23 @@
     
     <div class="lg:px-56 flex flex-col lg:flex-row container items-center lg:items-start mx-auto lg:mt-4">
         <div class="image-cover absolute lg:top-80 top-36 h-75 w-50">
-            <img src="{{ $anime['coverImage'] }}" alt="{{ $anime['title']['userPreferred'] }}" class="rounded-md border-2 border-slate-200 drop-shadow-lg">
+            <img src="{{ $jikan['images']['jpg']['large_image_url'] }}" alt="{{ $jikan['title'] }}" class="rounded-md border-2 border-slate-200 drop-shadow-lg">
         </div>
         <div class="anime-desc lg:ml-60 mx-4 my-6">
-            <p class="text-4xl font-bold mb-4 text-center lg:text-start">{{ $anime['title']['userPreferred'] }}</p>
+            <p class="text-4xl font-bold mb-4 text-center lg:text-start">{{ $jikan['title'] }}</p>
             <p class="mb-2 lg:mb-4 font-semibold text-lg text-slate-500 text-center lg:text-start">
-                <a class="block lg:inline bg-white p-2 rounded-full lg:mr-1 mb-4 lg:mb-0 text-sm text-black" href="{{ route('anime.watch', ['slug' => $anime['slug'], 'episode' => $anime['episodes'][0]['id']]) }}">Watch Now</a>
-                {{ $anime['status'] }} &#9679; {{ count($anime['episodes']) }} Episode(s)
+                <a class="block lg:inline bg-white p-2 rounded-full lg:mr-1 mb-4 lg:mb-0 text-sm text-black" href="{{ route('anime.watch', ['id' => $jikan['mal_id'], 'episode' => $anime['episodes'][0]['id']]) }}">Watch Now</a>
+                {{ $jikan['status'] }} &#9679; {{ $jikan['episodes'] }} Episode(s)
             </p>
             <p class="line-clamp-5" id="anime-desc">{!! $anime['description'] !!}</p> <button id="show-more-desc" class="underline underline-offset-4">Show more</button>
         </div>
     </div>
 
-    @if (!empty($anime['relations']))
-    <div class="related-anime lg:mx-56 mx-4 mt-6">
-        <h2 class="text-3xl font-bold mb-4">Related to {{ $anime['title']['userPreferred'] }}</h2>
-        <div class="grid gap-4 xl:gap-6 grid-flow-col-dense overflow-x-scroll">
+    {{-- @if (!empty($anime['relations']))
+    <div class="anime-relations lg:mx-56 mx-4 mt-4">
+        <p class="text-3xl font-bold mb-4">Related to {{ $anime['title']['userPreferred'] }}</p>
+
+        <div class="grid gap-4 lg:grid-cols-5 grid-cols-2">
             @foreach ($anime['relations'] as $anime)
             <div class="card w-36 lg:w-64 mb-4 h-72 lg:h-full">
                 <div class="card-image mb-2">
@@ -43,11 +44,10 @@
             @endforeach
         </div>
     </div>
-    @endif
+    @endif --}}
     
-    @if (!empty($characters['data']))    
-    <div class="anime-characters lg:mx-56 mx-4 mt-6">
-        {{-- {{dd($characters)}} --}}
+    {{-- @if (!empty($characters['data']))    
+    <div class="anime-characters lg:mx-56 mx-4">
         <p class="text-3xl font-bold mb-4">Characters</p>
         <div class="grid gap-4 lg:grid-cols-4 md:grid-cols-3 grid-cols-2 overflow-x-scroll h-30">
             @foreach ($characters['data'] as $character)
@@ -64,7 +64,7 @@
             @endforeach
         </div>
     </div>
-    @endif
+    @endif --}}
 
 </div>
 @endsection

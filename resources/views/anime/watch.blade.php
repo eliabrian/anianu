@@ -9,7 +9,7 @@
             <div class="lg:aspect-w-16 lg:aspect-h-9 aspect-w-4 aspect-h-3">
                 <iframe class="rounded-lg" src="{{ $source['stream_link'] }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
-            <p class="text-2xl font-bold mt-4 text-center lg:text-left"><a href="{{ route('anime.show', ['slug' => $episodeDetails['anime']['slug']]) }}">{{ $episodeDetails['anime']['title']['userPreferred'] }} </a></p>
+            <p class="text-2xl font-bold mt-4 text-center lg:text-left"><a href="{{ route('anime.show', ['id' => $episodeDetails['anime']['slug']]) }}">{{ $episodeDetails['anime']['title']['userPreferred'] }} </a></p>
             <p class="text-lg text-slate-500 font-bold text-center lg:text-left">Episode {{ $episodeDetails['number'] }} : {{ $episodeDetails['title'] }}</p>
         </div>
         <div class="lg:w-1/4 lg:ml-6 rounded-lg ">
@@ -23,8 +23,8 @@
                     </div>
                     @endif
                     <div class="w-2/3">
-                        <div class="episode-card hover:text-slate-500 {{ $episode['number'] === $source['ep_num'] ? 'text-slate-500' :'' }} px-5 py-2">
-                            <a href="{{ route('anime.watch', ['slug' => $episodeDetails['anime']['slug'], 'episode' => $episode['id']]) }}">
+                        <div class="episode-card hover:text-slate-500 px-5 py-2">
+                            <a href="{{ route('anime.watch', ['id' => $episodeDetails['anime']['slug'], 'episode' => $episode['id']]) }}">
                                 <p class="font-semibold">Episode {{ $episode['number'] }}</p>
                                 <p class="text-sm line-clamp-2 text-left">{{ $episode['title'] }}</p>
                             </a>
