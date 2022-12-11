@@ -55,4 +55,30 @@ class AnimeController extends Controller
         
         return view('anime.search', compact('animes', 'q'));
     }
+
+    public function viewAll(string $type, Request $request)
+    {
+        $page = 1;
+
+        if ($request->has('page')) {
+            $page = $request->query('page');
+        }
+
+        switch ($type) {
+            case 'seasonal':
+                $title = 'Seasonal Anime';
+                $animes = JikanHandler::getSeason(now: true, query: ['page' => $page, 'filter' => 'tv']);
+                break;
+            
+            case 'airing':
+                $title = 'Top Airing Anime';
+                $animes = JikanHandler::getTopAnime(limit: 25, page: $page);
+                break;
+            default:
+                # code...
+                break;
+        }
+
+        return view('anime.all', compact('animes', 'title'));
+    }
 }

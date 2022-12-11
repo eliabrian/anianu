@@ -26,17 +26,20 @@ class JikanHandler
         return $response->json();
     }
 
-    public static function getSeason(bool $now = false, string $year = "", string $season = "")
+    public static function getSeason(bool $now = false, string $year = "", string $season = "", array $query = [])
     {
         $url = config('anime.protocol') . "://" . config('anime.urls.jikan') . "/" . self::SEASON_PATH . "/" . self::NOW_PATH;
         
         if (!$now) {
             $url = config('anime.protocol') . "://" . config('anime.urls.jikan') . "/" . self::SEASON_PATH . "/" . $year . "/" . $season;
         }
-        $query = [
-            'filter' => 'tv',
-            'page' => 1,
-        ];
+
+       if (empty($query)) {
+            $query = [
+                'filter' => 'tv',
+                'page' => 1,
+            ];
+       }
 
         return self::fetchData($url, $query);
     }

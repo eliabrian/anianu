@@ -21,7 +21,7 @@
                     <div class="flex items-center lg:mb-3 md:mb-4 mb-3">
                         @if ($episode['image'])    
                         <div class="lg:w-1/2 md:w-1/3 w-1/3 relative hover:text-white">
-                            <img class="rounded-lg 2xl:h-28 h-20 w-full object-cover" src="{{ $episode['image'] }}" alt="{{ $episode['id'] }}">
+                            <img class="rounded-lg 2xl:h-28 lg:h-20 md:h-36 h-20 w-full w-full object-cover" src="{{ $episode['image'] }}" alt="{{ $episode['id'] }}">
                             @if ($episode_id == $episode['id'])    
                             <div class="w-full h-full absolute top-0 bg-gray-700/75 rounded-lg">
                                 <div class="font-bold flex items-center justify-center w-full h-full">
@@ -34,7 +34,7 @@
                         </div>
                         @else
                         <div class="lg:w-1/2 md:w-1/3 w-1/3 relative">
-                            <img class="rounded-lg 2xl:h-28 lg:h-20 md:h-36 h-16 w-full object-cover" src="{{ $anime['data']['images']['webp']['large_image_url'] }}" alt="{{ $episode['id'] }}">
+                            <img class="rounded-lg 2xl:h-28 lg:h-20 md:h-36 h-20 w-full w-full object-cover" src="{{ $anime['data']['images']['webp']['large_image_url'] }}" alt="{{ $episode['id'] }}">
                             @if ($episode_id == $episode['id'])    
                             <div class="w-full h-full absolute top-0 bg-gray-700/75 rounded-lg">
                                 <div class="font-bold flex items-center justify-center w-full h-full">
@@ -49,7 +49,10 @@
                         <div class="lg:w-1/2 md:w-2/3 w-2/3 hover:text-slate-500">
                             <div class="episode-card px-5 py-2 my-2">
                                 <p class="font-semibold line-clamp-2 {{ $episode_id == $episode['id'] ? 'text-gray-500' : '' }}">Episode {{ $episode['number'] }}</p>
-                                <p class="text-sm line-clamp-2 text-left text-gray-500">{{ \Carbon\Carbon::createFromTimestamp(strtotime($episode['airedAt']))->diffForHumans() }}</p>
+                                @if (isset($episode['titleVariations']['english']) && !empty($episode['titleVariations']['english']))
+                                <p class="text-sm line-clamp-1 text-left text-gray-500">{{ $episode['titleVariations']['english'] }}</p>
+                                @endif
+                                <p class="text-sm  text-left text-gray-500">{{ \Carbon\Carbon::createFromTimestamp(strtotime($episode['airedAt']))->diffForHumans() }}</p>
                             </div>
                         </div>
                     </div>

@@ -14,7 +14,7 @@
                     <hr class="mx-8 border-1 bg-white">
                 </div>
                 <div class="card-list-header-all">
-                    <a href="#">View All</a>
+                    <a href="{{ route('anime.view-all', ['type' => 'seasonal']) }}">View All</a>
                 </div>
             </div>
         </div>
@@ -36,7 +36,7 @@
                     <hr class="mx-8 border-1 bg-white">
                 </div>
                 <div class="card-list-header-all">
-                    <a href="#">View All</a>
+                    <a href="{{ route('anime.view-all', ['type' => 'airing']) }}">View All</a>
                 </div>
             </div>
         </div>

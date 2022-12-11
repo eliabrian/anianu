@@ -12,7 +12,7 @@ class ExploreController extends Controller
     public function index()
     {
         // $latest = EnimeHandler::getAnimeRecent();
-        $now = JikanHandler::getSeason(true)["data"];
+        $now = JikanHandler::getSeason(now: true)["data"];
         $now = array_slice($now, 0, 5);
 
         $top = JikanHandler::getTopAnime(limit: 5)['data'];
