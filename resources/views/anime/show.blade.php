@@ -21,50 +21,5 @@
             <p class="line-clamp-5" id="anime-desc">{!! $anime['description'] !!}</p> <button id="show-more-desc" class="underline underline-offset-4">Show more</button>
         </div>
     </div>
-
-    {{-- @if (!empty($anime['relations']))
-    <div class="anime-relations lg:mx-56 mx-4 mt-4">
-        <p class="text-3xl font-bold mb-4">Related to {{ $anime['title']['userPreferred'] }}</p>
-
-        <div class="grid gap-4 lg:grid-cols-5 grid-cols-2">
-            @foreach ($anime['relations'] as $anime)
-            <div class="card w-36 lg:w-64 mb-4 h-72 lg:h-full">
-                <div class="card-image mb-2">
-                    <a href="{{ route('anime.show', ['slug' => $anime['anime']['slug']]) }}">
-                        <img src="{{ $anime['anime']['coverImage'] }}" alt="{{ $anime['anime']['title']['userPreferred'] }}" class="h-56 lg:h-96 object-cover rounded-lg">
-                    </a>
-                </div>
-                <div class="card-info">
-                    <div class="title truncate font-bold">
-                        <div class="episode text-sm text-gray-500 font-semibold">Eps {{ $anime['anime']['currentEpisode'] }}</div>
-                        <a href="{{ route('anime.show', $anime['anime']['slug']) }}">{{ $anime['anime']['title']['userPreferred'] }}</a>
-                    </div>
-                </div>
-            </div>
-            @endforeach
-        </div>
-    </div>
-    @endif --}}
-    
-    {{-- @if (!empty($characters['data']))    
-    <div class="anime-characters lg:mx-56 mx-4">
-        <p class="text-3xl font-bold mb-4">Characters</p>
-        <div class="grid gap-4 lg:grid-cols-4 md:grid-cols-3 grid-cols-2 overflow-x-scroll h-30">
-            @foreach ($characters['data'] as $character)
-            <div class="card lg:mb-4">
-                <div class="card-image h-fit">
-                    <img src="{{ $character['character']['images']['webp']['image_url'] }}" alt="asdasd" class="w-full xl:h-96 object-cover rounded-lg">
-                </div>
-                <div class="card-desc mt-1">
-                    <div class="title truncate font-bold">
-                        {{ $character['character']['name'] }}
-                    </div>
-                </div>
-            </div>
-            @endforeach
-        </div>
-    </div>
-    @endif --}}
-
 </div>
 @endsection

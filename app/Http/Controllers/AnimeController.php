@@ -28,11 +28,15 @@ class AnimeController extends Controller
 
     public function watch(string $id, string $episode)
     {
+        $anime = JikanHandler::getAnimeById($id);
+        
         $episodeDetails = EnimeHandler::getEpisodeInfo($episode);
         
         $source['stream_link'] = "https://anikatsu.me/player/v1.php?id=" . $episodeDetails['sources'][0]['target'];
+
+        $episode_id = $episode;
         
-        return view('anime.watch', compact('episodeDetails', 'source'));
+        return view('anime.watch', compact('episodeDetails', 'source', 'id', 'episode_id', 'anime'));
     }
 
     public function search(Request $request)
