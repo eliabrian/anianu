@@ -21,7 +21,7 @@
                     <div class="flex items-center lg:mb-3 md:mb-4 mb-3">
                         @if ($episode['image'])    
                         <div class="lg:w-1/2 md:w-1/3 w-1/3 relative hover:text-white">
-                            <img class="rounded-lg h-20 w-full object-cover" src="{{ $episode['image'] }}" alt="{{ $episode['id'] }}">
+                            <img class="rounded-lg 2xl:h-28 h-20 w-full object-cover" src="{{ $episode['image'] }}" alt="{{ $episode['id'] }}">
                             @if ($episode_id == $episode['id'])    
                             <div class="w-full h-full absolute top-0 bg-gray-700/75 rounded-lg">
                                 <div class="font-bold flex items-center justify-center w-full h-full">
@@ -35,7 +35,15 @@
                         @else
                         <div class="lg:w-1/2 md:w-1/3 w-1/3 relative">
                             <img class="rounded-lg 2xl:h-28 lg:h-20 md:h-36 h-16 w-full object-cover" src="{{ $anime['data']['images']['webp']['large_image_url'] }}" alt="{{ $episode['id'] }}">
-                            <div class="absolute font-bold">{{ $episode_id == $episode['id'] ? 'Playing: ' : '' }}</div>
+                            @if ($episode_id == $episode['id'])    
+                            <div class="w-full h-full absolute top-0 bg-gray-700/75 rounded-lg">
+                                <div class="font-bold flex items-center justify-center w-full h-full">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5">
+                                        <path d="M5.75 3a.75.75 0 00-.75.75v12.5c0 .414.336.75.75.75h1.5a.75.75 0 00.75-.75V3.75A.75.75 0 007.25 3h-1.5zM12.75 3a.75.75 0 00-.75.75v12.5c0 .414.336.75.75.75h1.5a.75.75 0 00.75-.75V3.75a.75.75 0 00-.75-.75h-1.5z" />
+                                    </svg>                                      
+                                </div>
+                            </div>
+                            @endif
                         </div>
                         @endif
                         <div class="lg:w-1/2 md:w-2/3 w-2/3 hover:text-slate-500">
