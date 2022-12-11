@@ -34,7 +34,7 @@
                         </div>
                         @else
                         <div class="lg:w-1/2 md:w-1/3 w-1/3 relative">
-                            <img class="rounded-lg lg:h-20 md:h-36 h-16 w-full object-cover" src="{{ $anime['data']['images']['webp']['large_image_url'] }}" alt="{{ $episode['id'] }}">
+                            <img class="rounded-lg 2xl:h-28 lg:h-20 md:h-36 h-16 w-full object-cover" src="{{ $anime['data']['images']['webp']['large_image_url'] }}" alt="{{ $episode['id'] }}">
                             <div class="absolute font-bold">{{ $episode_id == $episode['id'] ? 'Playing: ' : '' }}</div>
                         </div>
                         @endif
