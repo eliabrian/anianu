@@ -1,30 +1,43 @@
 import './bootstrap';
-import './carousel';
-import 'flowbite';
 
 let searchButton = document.getElementById('search-button');
 let searchInput = document.getElementById('search-input');
 
-searchButton.addEventListener('click', () => {
-    if (searchInput.classList.contains('hidden')) {
-        searchInput.classList.remove('hidden')
-    } else {
-        searchInput.classList.add('hidden')
-    }
-})
+if (searchButton && searchInput) {
+    searchButton.addEventListener('click', () => {
+        if (searchInput.classList.contains('hidden')) {
+            searchInput.classList.remove('hidden')
+        } else {
+            searchInput.classList.add('hidden')
+        }
+    })
+}
 
 let animeDesc = document.getElementById('anime-desc')
 let showMoreButton = document.getElementById('show-more-desc')
 
-showMoreButton.addEventListener('click', () => {
-    if (animeDesc.classList.contains('line-clamp-5')) {
-        animeDesc.classList.remove('line-clamp-5')
-        showMoreButton.innerHTML = 'Show less'
-    } else {
-        animeDesc.classList.add('line-clamp-5')
-        showMoreButton.innerHTML = 'Show more'
+if (animeDesc && showMoreButton) {
+    showMoreButton.addEventListener('click', () => {
+        if (animeDesc.classList.contains('line-clamp-5')) {
+            animeDesc.classList.remove('line-clamp-5')
+            showMoreButton.innerHTML = 'Show less'
+        } else {
+            animeDesc.classList.add('line-clamp-5')
+            showMoreButton.innerHTML = 'Show more'
+        }
+    })
+}
+
+let selectServer = document.getElementById('server-select');
+
+if (selectServer) {
+    let animeFrame = document.getElementById('anime-frame');
+    let selected = '';
+    for (let i = 0; i < selectServer.length; i++ ) {
+       selected = (selectServer.options[i].value)
     }
-})
 
-const carousel = new Carousel(items, options);
-
+    selectServer.addEventListener('change', function () {
+        animeFrame.src = this.value;
+    })
+}

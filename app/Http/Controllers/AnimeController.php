@@ -29,14 +29,28 @@ class AnimeController extends Controller
     public function watch(string $id, string $episode)
     {
         $anime = JikanHandler::getAnimeById($id);
+        $sources = [];
         
         $episodeDetails = EnimeHandler::getEpisodeInfo($episode);
+        foreach ($episodeDetails['sources'] as $key => $source) {
+            $sr = EnimeHandler::getStreamingSource($source['id']);
+            $url = parse_url($source['url'], PHP_URL_HOST);
+            if (str_contains($url, 'gogoanime')) {
+                $key = 'gogoanime';
+                $sources[$key]['referer'] = $sr['referer'];
+                $sources[$key]['priority'] = $sr['priority']+ 1;
+            }
+        }
         
         $source['stream_link'] = "https://anikatsu.me/player/v1.php?id=" . $episodeDetails['sources'][0]['target'];
 
         $episode_id = $episode;
-        
-        return view('anime.watch', compact('episodeDetails', 'source', 'id', 'episode_id', 'anime'));
+
+        $anikatsu['referer'] = "https://anikatsu.me/player/v1.php?id=" . $episodeDetails['sources'][0]['target'];
+        $anikatsu['priority'] = 1;
+        $sources['anikatsu'] = $anikatsu;
+
+        return view('anime.watch', compact('episodeDetails', 'source', 'sources', 'id', 'episode_id', 'anime'));
     }
 
     public function search(Request $request)

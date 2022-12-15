@@ -7,10 +7,21 @@
     <div class="lg:flex lg:mx-10">
         <div class="lg:w-3/4 rounded-lg mb-2 lg:mb-0">
             <div class="lg:aspect-w-16 lg:aspect-h-9 aspect-w-4 aspect-h-3">
-                <iframe class="rounded-lg" src="{{ $source['stream_link'] }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe id="anime-frame" class="rounded-lg" src="{{ $source['stream_link'] }}" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; autoplay; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
-            <p class="text-2xl font-bold mt-4 text-center lg:text-left"><a href="{{ route('anime.show', ['id' => $id]) }}">{{ $episodeDetails['anime']['title']['userPreferred'] }} </a></p>
-            <p class="text-lg text-gray-500 font-bold text-center lg:text-left">Episode {{ $episodeDetails['number'] }} : {{ $episodeDetails['title'] }}</p>
+            <div class="flex flex-col lg:flex-row w-full items-center justify-center">
+                <div class="lg:w-3/4 w-full">
+                    <p class="text-2xl font-bold mt-4 text-center lg:text-left"><a href="{{ route('anime.show', ['id' => $id]) }}">{{ $episodeDetails['anime']['title']['userPreferred'] }} </a></p>
+                    <p class="text-lg text-gray-500 font-bold text-center lg:text-left">Episode {{ $episodeDetails['number'] }} : {{ $episodeDetails['title'] }}</p>
+                </div>
+                <div class="lg:w-1/4 w-full p-4 lg:p-0">
+                    <select name="server" id="server-select" class="w-full flex bg-gray-700 border border-gray-600 placeholder-gray-400 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                        @foreach ($sources as $key => $sr)
+                            <option value="{{ $sr['referer'] }}" selected>{{ ucfirst($key) }}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
         </div>
         <div class="lg:w-1/4 lg:ml-6 lg:mr-14 md:mx-6 rounded-lg">
             <p class="text-2xl font-semibold pb-2">Episode List</p>
